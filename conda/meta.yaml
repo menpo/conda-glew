@@ -1,0 +1,24 @@
+package:
+  name: glew
+  version: "1.13.0.20151117"
+
+source:
+  fn: glew-20151117.tgz
+  url: http://sourceforge.net/projects/glew/files/glew/snapshots/glew-20151117.tgz/download
+
+  patches:
+    - osmesa.patch
+
+requirements:
+  build:
+    - cmake
+    - osmesa
+
+test:
+  commands:
+    - test -f $PREFIX/lib/libGLEW.dylib  # [osx]
+    - test -f $PREFIX/lib/libGLEW.so     # [linux]
+
+about:
+  home: http://glew.sourceforge.net
+  license: BSD
