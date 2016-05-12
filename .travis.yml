@@ -1,4 +1,5 @@
-sudo: false
+# Required to set GCC-4.8 as default compiler
+sudo: true
 
 os:
 - linux
@@ -12,12 +13,27 @@ env:
   matrix:
     - PYTHON_VERSION: 2.7
 
+addons:
+ apt:
+   sources:
+   - ubuntu-toolchain-r-test
+   packages:
+   - gcc-4.8
+   - g++-4.8
+
 install:
 - wget https://raw.githubusercontent.com/menpo/condaci/v0.4.8/condaci.py -O condaci.py
 - python condaci.py setup
+- sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 100
+- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100
 
 script:
 - ~/miniconda/bin/python condaci.py build ./conda
 
 notifications:
+  slack:
+    rooms:
+      - menpo:19gyWImMkOfCj0iDAgTbDlDA
+    on_success: :change
+    on_failure: :change
   email: false
