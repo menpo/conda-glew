@@ -7,7 +7,7 @@ cd build_glew
 cmake .. -G"NMake Makefiles" ^
  -DCMAKE_BUILD_TYPE=Release ^
  -DBUILD_SHARED_LIBS=1 ^
- -DBUILD_UTILS=0 ^
+ -DBUILD_UTILS=1 ^
  -DGLEW_OSMESA=1 ^
  -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX%
 

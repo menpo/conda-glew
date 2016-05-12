@@ -7,7 +7,7 @@ cd build
 
 mkdir build_glew
 cd build_glew
-cmake ../cmake -DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_BUILD_TYPE=Release -DBUILD_UTILS=0 -DGLEW_OSMESA=1
+cmake ../cmake -DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_BUILD_TYPE=Release -DBUILD_UTILS=1 -DGLEW_OSMESA=1
 make -j2
 make install
 
