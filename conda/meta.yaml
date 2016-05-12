@@ -1,5 +1,5 @@
 package:
-  name: glew
+  name: glew-osmesa
   version: "1.13.0.20151117"
 
 source:
