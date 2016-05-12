@@ -20,9 +20,9 @@ make install
 
 # Copy the libs just for testing
 if [ "$(uname -s)" == "Darwin" ]; then
-  cp $PREFIX/lib/libGLEW.dylib out/bin/
+  install_name_tool -change libGLEW.dylib $PREFIX/lib/libGLEW.dylib out/bin/cmake-test
+  install_name_tool -change @rpath/libOSMesa.8.dylib $PREFIX/lib/libOSMesa.8.dylib out/bin/cmake-test
 else
-  patchelf --set-rpath '$ORIGIN/./' $PREFIX/lib/libGLEW.so
   patchelf --set-rpath $PREFIX/lib out/bin/cmake-test
 fi
 out/bin/cmake-test

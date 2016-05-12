@@ -8,6 +8,7 @@ source:
 
   patches:
     - osmesa.patch
+    - osmesa_test.patch
 
 requirements:
   build:
