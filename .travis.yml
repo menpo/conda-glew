@@ -20,7 +20,6 @@ addons:
    packages:
    - gcc-4.8
    - g++-4.8
-   - patchelf
 
 install:
 - wget https://raw.githubusercontent.com/menpo/condaci/v0.4.8/condaci.py -O condaci.py

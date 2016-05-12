@@ -13,6 +13,7 @@ requirements:
   build:
     - cmake
     - osmesa
+    - patchelf  # [linux]
 
 test:
   commands:
