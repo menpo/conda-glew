@@ -20,9 +20,4 @@ script:
 - ~/miniconda/bin/python condaci.py build ./conda
 
 notifications:
-  slack:
-    rooms:
-      - menpo:19gyWImMkOfCj0iDAgTbDlDA
-    on_success: :change
-    on_failure: :change
   email: false
