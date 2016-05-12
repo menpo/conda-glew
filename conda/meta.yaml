@@ -15,6 +15,9 @@ requirements:
     - cmake
     - osmesa
     - patchelf  # [linux]
+  
+  run:
+    - osmesa
 
 test:
   commands:
