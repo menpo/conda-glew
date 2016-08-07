@@ -1,29 +1,43 @@
+{% set version="2.0.0" %}
+
 package:
-  name: glew-osmesa
-  version: "1.13.0.20151117"
+  name: glew
+  version: {{ version }}
 
 source:
-  fn: glew-20151117.tgz
-  url: http://sourceforge.net/projects/glew/files/glew/snapshots/glew-20151117.tgz/download
-
+  fn: glew-{{ version }}.tgz
+  url: https://github.com/nigels-com/glew/releases/download/glew-{{ version }}/glew-{{ version }}.tgz
+  sha256: c572c30a4e64689c342ba1624130ac98936d7af90c3103f9ce12b8a0c5736764
+  
   patches:
-    - osmesa.patch
-    - osmesa_test.patch
+    - win_remove_stdlib_remove.patch  # [win and not py35]
+    - test_c89.patch                  # [win and not py35]
+
+build:
+  number: 0
+  features:
+    - vc9     # [win and py27]
+    - vc10    # [win and py34]
+    - vc14    # [win and py35]
 
 requirements:
   build:
     - cmake
-    - osmesa
-    - patchelf  # [linux]
-  
-  run:
-    - osmesa
-
+    - python  # [win]
+ 
 test:
+  requires:
+    - python                                               # [win]
+
   commands:
-    - test -f $PREFIX/lib/libGLEW.dylib  # [osx]
-    - test -f $PREFIX/lib/libGLEW.so     # [linux]
+    - test -f $PREFIX/lib/libGLEW.dylib                    # [osx]
+    - test -f $PREFIX/lib/libGLEW.so                       # [linux]
+    - test -f $PREFIX/lib/libGLEW.a                        # [unix]
+    - $PREFIX/bin/glewinfo                                 # [unix]
+    - $PREFIX/bin/visualinfo                               # [unix]
+    - if not exist %PREFIX%/Library/bin/glew32.dll exit 1  # [win]
 
 about:
   home: http://glew.sourceforge.net
-  license: BSD
+  summary: The OpenGL Extension Wrangler Library
+  license: BSD 3-Clause
